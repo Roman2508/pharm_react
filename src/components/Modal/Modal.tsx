@@ -16,7 +16,7 @@ interface IModalProps {
 const Modal = React.forwardRef<React.FC, React.PropsWithChildren<IModalProps>>(
   ({ children, isShow, setIsShow, modalTitle, modalBody, classNames = '' }, ref) => {
     // @ts-ignore
-    const body = modalBody?.replaceAll('/uploads', `${process.env.API_URL}/uploads`)
+    const body = modalBody?.replaceAll('/uploads', `${import.meta.env.VITE_API_URL}/uploads`)
 
     return (
       <>

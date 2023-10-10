@@ -52,14 +52,10 @@ body {
   text-align: center;
   font-family: GilroyBold, sans-serif;
 }
-
-// .page-subtitle {
-//   text-align: center;
-//   margin: 20px 0 10px;
-//   color: var(--primary-color);
-//   font-size: 28px;
-//   font-family: GilroyBold, sans-serif;
-// }
+.section-title-center {
+  display: block;
+  margin: 0 auto 40px;
+}
 
 .title-md {
   position: relative;

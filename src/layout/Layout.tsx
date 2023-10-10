@@ -9,11 +9,11 @@ import {
 import { gql } from '../graphql/client'
 import { Outlet } from 'react-router-dom'
 import Header from '../components/Header/Header'
-import SubHeader from '../components/SubHeader/SubHeader'
-import Breadcrumbs from '../components/Breadcrumbs/Breadcrumbs'
 import { Footer } from '../components/Footer/Footer'
-import LoadingSpinner from '../components/LoadingSpinner/LoadingSpinner'
+import SubHeader from '../components/SubHeader/SubHeader'
 import MainScreen from '../components/MainScreen/MainScreen'
+import Breadcrumbs from '../components/Breadcrumbs/Breadcrumbs'
+import LoadingSpinner from '../components/LoadingSpinner/LoadingSpinner'
 
 export const Layout: React.FC<{ isHomePage?: boolean }> = ({ isHomePage = false }) => {
   // const [SEO, setSEO] = React.useState<SeoEntityResponse>()
