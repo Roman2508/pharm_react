@@ -79,7 +79,7 @@ export const News: React.FC<INewsProps> = ({
       })}
     >
       <div className={styles['news__inner']}>
-        {showTitle && news ? (
+        {news && showTitle ? (
           <h2 className={cn(styles['news__title'], 'section-title')}>Новини</h2>
         ) : (
           <Skeleton
@@ -110,8 +110,8 @@ export const News: React.FC<INewsProps> = ({
               ))
             : Array(3)
                 .fill(null)
-                .map((_) => (
-                  <div className={styles['news__item-skeleton']}>
+                .map((_, i) => (
+                  <div className={styles['news__item-skeleton']} key={i}>
                     <Skeleton width="400" height="500" radius="0" className={styles['news__item-skeleton-inner']} />
                   </div>
                 ))}

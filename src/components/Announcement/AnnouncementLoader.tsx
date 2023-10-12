@@ -10,7 +10,7 @@ const AnnouncementLoader = (props: any) => {
       {...props}
     >
       <title id="loading-aria">Loading...</title>
-      <rect x="0" y="0" width="100%" height="100%" clip-path="url(#clip-path)" style={{ fill: 'url("#fill")' }}></rect>
+      <rect x="0" y="0" width="100%" height="100%" clipPath="url(#clip-path)" style={{ fill: 'url("#fill")' }}></rect>
       <defs>
         <clipPath id="clip-path">
           <rect x="0" y="0" rx="20" ry="20" width="100%" height="51" />

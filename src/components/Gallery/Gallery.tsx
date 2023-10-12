@@ -19,7 +19,17 @@ export const Gallery: React.FC = () => {
 
   return (
     <div className={styles['gallery']}>
-      <h2 className={cn(styles['gallery__title'], 'section-title')}>{data?.homePageGallery.data.attributes.title}</h2>
+      {data ? (
+        <h2 className={cn(styles['gallery__title'], 'section-title')}>{data?.homePageGallery.data.attributes.title}</h2>
+      ) : (
+        <Skeleton
+          width="300"
+          height="60"
+          radius="10"
+          className={'section-title-center'}
+          styles={{ marginBottom: 40 }}
+        />
+      )}
 
       <div className="container">
         <div className={styles['gallery__content']}>

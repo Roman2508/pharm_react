@@ -5,6 +5,9 @@ import Stats from '../components/Stats/Stats'
 import { News } from '../components/News/News'
 import { Events } from '../components/Events/Events'
 import { Gallery } from '../components/Gallery/Gallery'
+import { Videos } from '../components/Videos/Videos'
+import { Contacts } from '../components/Contacts/Contacts'
+import { Partners } from '../components/Partners/Partners'
 
 export const HomePage: React.FC = () => {
   return (
@@ -17,6 +20,9 @@ export const HomePage: React.FC = () => {
       </div>
       <Events />
       <Gallery />
+      <Videos />
+      <Contacts />
+      <Partners />
     </>
   )
 }
