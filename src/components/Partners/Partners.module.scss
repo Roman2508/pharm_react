@@ -11,6 +11,21 @@
   position: relative;
 }
 
+.partners__skeleton-wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+
+.partners__skeleton-wrapper--first {
+  position: relative;
+  left: -50px;
+  margin-bottom: 10px;
+}
+.partners__skeleton-wrapper--second {
+  position: relative;
+  right: -50px;
+}
+
 .partners__wrapper::before,
 .partners__wrapper::after {
   content: '';

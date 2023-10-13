@@ -1,13 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import Skeleton from '../Skeleton/Skeleton'
 import { Accordion } from '../ui/Accordion/Accordion'
 import { GetAllNewsDatesQuery } from '../../graphql/__generated__'
 import groupNewsByYearsAndMonths from '../../utils/groupNewsByYearsAndMonths'
-import LoadingSpinner from '../LoadingSpinner/LoadingSpinner'
 
 interface INewsArchiveProps {
-  newsDates: GetAllNewsDatesQuery
+  newsDates?: GetAllNewsDatesQuery
 }
 
 const NewsArchive: React.FC<INewsArchiveProps> = ({ newsDates }) => {
@@ -32,7 +32,29 @@ const NewsArchive: React.FC<INewsArchiveProps> = ({ newsDates }) => {
           </Accordion>
         ))
       ) : (
-        <LoadingSpinner />
+        <>
+          <Skeleton
+            width="100%"
+            height="65"
+            radius="10"
+            className={'section-title-center'}
+            styles={{ marginBottom: '20px' }}
+          />
+          <Skeleton
+            width="100%"
+            height="65"
+            radius="10"
+            className={'section-title-center'}
+            styles={{ marginBottom: '20px' }}
+          />
+          <Skeleton
+            width="100%"
+            height="65"
+            radius="10"
+            className={'section-title-center'}
+            styles={{ marginBottom: '20px' }}
+          />
+        </>
       )}
     </>
   )

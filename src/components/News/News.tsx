@@ -3,11 +3,10 @@ import cn from 'classnames'
 
 import { NewsItem } from './NewsItem'
 import Pagination from './Pagination'
-import { gql } from '../../graphql/client'
 import styles from './News.module.scss'
-// import LoadingSpinner from '../LoadingSpinner/LoadingSpinner'
-import { GetNewsByMonthQuery, NovinaEntity } from '../../graphql/__generated__'
+import { gql } from '../../graphql/client'
 import Skeleton from '../Skeleton/Skeleton'
+import { GetNewsByMonthQuery, NovinaEntity } from '../../graphql/__generated__'
 
 interface INewsProps {
   showTitle?: boolean
@@ -24,8 +23,6 @@ export const News: React.FC<INewsProps> = ({
   isFilter = false,
   addMarginBottom = false,
 }) => {
-  const firstRender = React.useRef(false)
-
   // @ts-ignore
   const [news, setNews] = React.useState<NovinaEntity[]>(newsData ? newsData.novinas.data : [])
   const [pagesCount, setPagesCount] = React.useState(1)
@@ -53,7 +50,7 @@ export const News: React.FC<INewsProps> = ({
   }, [])
 
   React.useEffect(() => {
-    if (firstRender.current) {
+    try {
       const fetchNewsItems = async () => {
         try {
           setIsLoading(true)
@@ -67,10 +64,10 @@ export const News: React.FC<INewsProps> = ({
         }
       }
       fetchNewsItems()
-    } else {
-      firstRender.current = true
+    } catch (err) {
+      console.log(err, 'news page error')
     }
-  }, [currentPage])
+  }, [currentPage, pageSize])
 
   return (
     <div
@@ -81,7 +78,7 @@ export const News: React.FC<INewsProps> = ({
       <div className={styles['news__inner']}>
         {news && showTitle ? (
           <h2 className={cn(styles['news__title'], 'section-title')}>Новини</h2>
-        ) : (
+        ) : showTitle ? (
           <Skeleton
             width="300"
             height="60"
@@ -89,7 +86,7 @@ export const News: React.FC<INewsProps> = ({
             className={'section-title-center'}
             styles={{ marginBottom: 40 }}
           />
-        )}
+        ) : null}
         <div
           className={cn(styles['news__items'], {
             [styles['news__items--loading']]: isLoading,
@@ -116,8 +113,6 @@ export const News: React.FC<INewsProps> = ({
                   </div>
                 ))}
         </div>
-
-        {/* {isLoading && <LoadingSpinner />} */}
 
         {news.length ? (
           <Pagination pagesCount={pagesCount} currentPage={currentPage} setCurrentPage={setCurrentPage} />

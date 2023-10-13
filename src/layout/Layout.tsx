@@ -4,7 +4,6 @@ import {
   FooterEntityResponse,
   HeaderEntityResponse,
   GetMainScreenQuery,
-  SeoEntityResponse,
 } from '../graphql/__generated__'
 import { gql } from '../graphql/client'
 import { Outlet } from 'react-router-dom'

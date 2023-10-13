@@ -10,6 +10,13 @@ import { Contacts } from '../components/Contacts/Contacts'
 import { Partners } from '../components/Partners/Partners'
 
 export const HomePage: React.FC = () => {
+  React.useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    })
+  }, [])
+
   return (
     <>
       <Announcement />

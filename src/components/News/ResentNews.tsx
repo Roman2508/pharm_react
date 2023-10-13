@@ -1,9 +1,9 @@
 import React from 'react'
-import Link from 'next/link'
+import { Link } from 'react-router-dom'
 
 import styles from './News.module.scss'
-import convertMonthName from '@/utils/convertMonthName'
-import { GetSomeLastNewsQuery } from '@/graphql/__generated__'
+import convertMonthName from '../../utils/convertMonthName'
+import { GetSomeLastNewsQuery } from '../../graphql/__generated__'
 
 interface IResentNewsProps {
   resentNews: GetSomeLastNewsQuery
@@ -20,7 +20,7 @@ export const ResentNews: React.FC<IResentNewsProps> = ({ resentNews }) => {
           <div className={styles['resent-news__item']} key={el.id}>
             <Link
               className={styles['resent-news__content']}
-              href={`/novina/${newsLink[0]}/${newsLink[1]}/${newsLink[2]}/${el.id}`}
+              to={`/novina/${newsLink[0]}/${newsLink[1]}/${newsLink[2]}/${el.id}`}
             >
               <h4 className={styles['resent-news__title']}>
                 <span className="underline-animation"> {el.attributes.title} </span>
