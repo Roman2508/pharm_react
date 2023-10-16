@@ -13,6 +13,7 @@ import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner'
 import replaceDataInBodyComponent from '../../utils/replaceDataInBodyComponent'
 import { FancyboxGallery } from '../../components/FancyboxGallery/FancyboxGallery'
 import { GetAllNewsDatesQuery, GetSomeLastNewsQuery, NovinaEntity } from '../../graphql/__generated__'
+import { scrollToTop } from '../../utils/scrollToTop'
 
 const FullNewsPage: React.FC = () => {
   const params = useParams()
@@ -23,6 +24,8 @@ const FullNewsPage: React.FC = () => {
   const [resentNews, setResentNews] = React.useState<GetSomeLastNewsQuery>()
 
   React.useEffect(() => {
+    scrollToTop()
+
     const fetchData = async () => {
       setIsLoading(true)
 

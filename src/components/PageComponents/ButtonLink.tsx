@@ -1,7 +1,7 @@
 import React from 'react'
 
 import styles from '../PageContent/Page.module.scss'
-import Link from 'next/link'
+import { Link } from 'react-router-dom'
 
 interface IButtonLinkProps {
   component: any
@@ -15,7 +15,7 @@ const ButtonLink: React.FC<IButtonLinkProps> = ({ component, colSize }) => {
 
   return (
     <div className={isNeedContainer ? 'container' : ''} key={component.id}>
-      <Link href={component.link} className={styles['link']} target="_blank">
+      <Link to={component.link} className={styles['link']} target="_blank">
         {component.text}
       </Link>
     </div>

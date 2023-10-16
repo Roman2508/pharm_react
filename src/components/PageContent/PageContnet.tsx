@@ -1,9 +1,6 @@
-// @ts-nocheck
-
 import React from 'react'
 import cn from 'classnames'
-import Link from 'next/link'
-import Image from 'next/image'
+import { Link } from 'react-router-dom'
 import 'keen-slider/keen-slider.min.css'
 
 import styles from './Page.module.scss'
@@ -11,19 +8,19 @@ import personStyles from './PersonComponent.module.scss'
 
 import { useKeenSlider } from 'keen-slider/react'
 
-import { PagePageComponentsDynamicZone, UploadFileEntity, Worker, WorkerEntity } from '@/graphql/__generated__'
+import Partners from '../PageComponents/Partners'
+import ButtonLink from '../PageComponents/ButtonLink'
 import ButtonImages from '../PageComponents/ButtonImages'
+import PhotosGallery from '../PageComponents/PhotosGallery'
 import EducationBooks from '../PageComponents/EducationBooks'
 import FullSizePerson from '../PageComponents/FullSizePerson'
-import Partners from '../PageComponents/Partners'
 import PageCardsComponent from '../PageComponents/PageCardsComponent'
-import ButtonLink from '../PageComponents/ButtonLink'
-import PersonComponent from '../PageComponents/PersonComponent/PersonComponent'
-import PhotosGallery from '../PageComponents/PhotosGallery'
 import AccordionComponent from '../PageComponents/AccordionComponent'
-import PanoramsComponent from '../PageComponents/PanoramasComponent/PanoramsComponent'
 import TwoColWithImage from '../PageComponents/TwoColWithImage/TwoColWithImage'
-import replaceDataInBodyComponent from '@/utils/replaceDataInBodyComponent'
+import PersonComponent from '../PageComponents/PersonComponent/PersonComponent'
+import replaceDataInBodyComponent from '../../utils/replaceDataInBodyComponent'
+import PanoramsComponent from '../PageComponents/PanoramasComponent/PanoramsComponent'
+import { PagePageComponentsDynamicZone, UploadFileEntity, Worker, WorkerEntity } from '../../graphql/__generated__'
 
 interface IPageContnetProps {
   colSize: string
@@ -125,7 +122,6 @@ const PageContnet = ({ colSize, pageComponents, mainPhotoCol, cmkHead, cmkTeache
                   width={el.attributes.width}
                   height={el.attributes.height}
                   alt="main page photo"
-                  priority
                 />
               </div>
             ))}
@@ -166,7 +162,7 @@ const PageContnet = ({ colSize, pageComponents, mainPhotoCol, cmkHead, cmkTeache
 
       {cmkHead && (
         <div className={personStyles['wrapper']}>
-          <Link href={cmkHeadLink} target="_blank">
+          <Link to={cmkHeadLink} target="_blank">
             <div className={personStyles['photo']}>
               <img
                 src={`${import.meta.env.VITE_API_URL}${cmkHead.photo.data.attributes.url}`}
@@ -177,7 +173,7 @@ const PageContnet = ({ colSize, pageComponents, mainPhotoCol, cmkHead, cmkTeache
           </Link>
 
           <div className={personStyles['info']}>
-            <Link href={cmkHeadLink} target="_blank">
+            <Link to={cmkHeadLink} target="_blank">
               <h5 className={personStyles['name']}>{cmkHead.name}</h5>
             </Link>
 
@@ -210,7 +206,7 @@ const PageContnet = ({ colSize, pageComponents, mainPhotoCol, cmkHead, cmkTeache
               return (
                 <div className={styles['teacher-wrapper']} key={teacher.id}>
                   <div className={styles['teacher-row']}>
-                    <Link className={styles['teacher-photo']} href={teacherLink}>
+                    <Link className={styles['teacher-photo']} to={teacherLink}>
                       <img
                         src={`${import.meta.env.VITE_API_URL}${teacher.attributes.photo.data.attributes.url}`}
                         width={teacher.attributes.photo.data.attributes.width || 150}
@@ -218,7 +214,7 @@ const PageContnet = ({ colSize, pageComponents, mainPhotoCol, cmkHead, cmkTeache
                         alt="teacher photo"
                       />
                     </Link>
-                    <Link className={styles['teacher-name']} href={teacherLink}>
+                    <Link className={styles['teacher-name']} to={teacherLink}>
                       {nameArray.map((el) => {
                         if (!el.length) return
                         return (

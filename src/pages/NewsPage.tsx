@@ -5,16 +5,14 @@ import { News } from '../components/News/News'
 import Skeleton from '../components/Skeleton/Skeleton'
 import NewsArchive from '../components/News/NewsArchive'
 import { GetAllNewsDatesQuery, GetNewsQuery } from '../graphql/__generated__'
+import { scrollToTop } from '../utils/scrollToTop'
 
 export const NewsPage: React.FC = () => {
   const [newsData, setNewsData] = React.useState<GetNewsQuery>()
   const [newsDates, setNewsDates] = React.useState<GetAllNewsDatesQuery>()
 
   React.useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    })
+    scrollToTop()
 
     const fetchData = async () => {
       const newsData = await gql.GetNews({ pageSize: 6 })

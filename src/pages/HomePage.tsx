@@ -8,13 +8,11 @@ import { Gallery } from '../components/Gallery/Gallery'
 import { Videos } from '../components/Videos/Videos'
 import { Contacts } from '../components/Contacts/Contacts'
 import { Partners } from '../components/Partners/Partners'
+import { scrollToTop } from '../utils/scrollToTop'
 
 export const HomePage: React.FC = () => {
   React.useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    })
+    scrollToTop()
   }, [])
 
   return (
