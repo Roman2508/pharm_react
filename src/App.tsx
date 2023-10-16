@@ -17,6 +17,7 @@ import { AllGroupsPage } from './pages/Rozklad/AllGroupsSchedule'
 import { OneGroupSchedulePage } from './pages/Rozklad/OneGroupSchedule'
 import { AllTeachersSchedulePage } from './pages/Rozklad/AllTeachersSchedule'
 import { OneTeacherSchedulePage } from './pages/Rozklad/OneTeacherSchedule'
+import { Administration } from './pages/Pro-zhbphc/Administracia/Administracia'
 
 const App = () => {
   return (
@@ -50,6 +51,8 @@ const App = () => {
         <Route element={<AllTeachersSchedulePage />} path="/rozklad/vikladach" />
         <Route element={<OneTeacherSchedulePage />} path="/rozklad/vikladach/:teacher_slug" />
         {/* // ROZKLAD */}
+
+        <Route element={<Administration />} path="/pro-zhbphc/administracia" />
 
         <Route element={<GeneralInfo />} path="/general-info" />
       </Route>
