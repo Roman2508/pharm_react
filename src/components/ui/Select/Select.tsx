@@ -44,7 +44,7 @@ const Select: React.FC<ISelectProps> = ({ children, activeItem, error, label, in
       >
         <span className={styles['select__current']}>{activeItem || label}</span>
         <div className={styles['select__icon']}>
-          <img src="../../../assets/icons/select-arrow.svg" width={20} height={20} alt="arrow icon" />
+          <img src="../src/assets/icons/select-arrow.svg" width={20} height={20} alt="arrow icon" />
         </div>
       </div>
 

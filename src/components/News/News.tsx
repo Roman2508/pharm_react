@@ -7,6 +7,9 @@ import styles from './News.module.scss'
 import { gql } from '../../graphql/client'
 import Skeleton from '../Skeleton/Skeleton'
 import { GetNewsByMonthQuery, NovinaEntity } from '../../graphql/__generated__'
+import { scrollToTop } from '../../utils/scrollToTop'
+import { useParams } from 'react-router-dom'
+import determineMaxDaysInMonth from '../../utils/determineMaxDaysInMonth'
 
 interface INewsProps {
   showTitle?: boolean
@@ -16,58 +19,128 @@ interface INewsProps {
   isFilter?: boolean
 }
 
-export const News: React.FC<INewsProps> = ({
-  showTitle,
-  newsData,
-  pageSize = 3,
-  isFilter = false,
-  addMarginBottom = false,
-}) => {
+export const News: React.FC<INewsProps> = ({ showTitle, newsData, pageSize = 3, addMarginBottom = false }) => {
+  const params = useParams()
+
   // @ts-ignore
   const [news, setNews] = React.useState<NovinaEntity[]>(newsData ? newsData.novinas.data : [])
   const [pagesCount, setPagesCount] = React.useState(1)
   const [currentPage, setCurrentPage] = React.useState(1)
   const [isLoading, setIsLoading] = React.useState(false)
 
+  /* GET ALL NEWS */
   React.useEffect(() => {
-    if (isFilter) {
+    if (Object.keys(params).length) {
       return
     }
 
-    try {
-      const fetchData = async () => {
-        const newsData = await gql.GetNews()
+    scrollToTop()
+
+    const fetchData = async () => {
+      try {
+        setIsLoading(true)
+        const newsData = await gql.GetNews({ pageSize })
+        
+        setCurrentPage(1)
         // @ts-ignore
         setNews(newsData.novinas.data)
         setPagesCount(newsData.novinas.meta.pagination.pageCount)
+      } catch (err) {
+        console.log('news error')
+        window.location.replace('/404')
+      } finally {
+        setIsLoading(false)
       }
-
-      fetchData()
-    } catch (err) {
-      console.log('news error')
-      window.location.replace('/404')
     }
-  }, [])
 
+    fetchData()
+  }, [params, pageSize])
+
+  /* PAGINATION */
   React.useEffect(() => {
-    try {
+    scrollToTop()
+
+    if (!Object.keys(params).length) {
       const fetchNewsItems = async () => {
         try {
           setIsLoading(true)
           const data = await gql.GetNews({ currentPage, pageSize })
           // @ts-ignore
           setNews(data.novinas.data)
-        } catch (error) {
-          alert('Помилка при отриманні даних!')
+          /*  */
+        } catch (err) {
+          console.log(err, 'news page error')
+          window.location.replace('/404')
+          /*  */
         } finally {
           setIsLoading(false)
         }
       }
+
       fetchNewsItems()
-    } catch (err) {
-      console.log(err, 'news page error')
+    } else {
+      const fetchNewsItems = async () => {
+        try {
+          setIsLoading(true)
+
+          const month = typeof params.month === 'string' ? params.month : ''
+          const maxDayInMonth = determineMaxDaysInMonth(month)
+
+          const newsData = await gql.GetNewsByMonth({
+            startDate: `${params.year}-${params.month}-01`,
+            endDate: `${params.year}-${params.month}-${maxDayInMonth}`,
+            pageSize: 6,
+            currentPage,
+          })
+          // @ts-ignore
+          setNews(newsData.novinas.data)
+          /*  */
+        } catch (err) {
+          console.log(err, 'news page error')
+          window.location.replace('/404')
+          /*  */
+        } finally {
+          setIsLoading(false)
+        }
+      }
+
+      fetchNewsItems()
     }
   }, [currentPage, pageSize])
+
+  /* FILTER */
+  React.useEffect(() => {
+    if (Object.keys(params).length !== 2) return
+
+    scrollToTop()
+
+    const fetchData = async () => {
+      try {
+        setIsLoading(true)
+
+        const month = typeof params.month === 'string' ? params.month : ''
+        const maxDayInMonth = determineMaxDaysInMonth(month)
+
+        const newsData = await gql.GetNewsByMonth({
+          startDate: `${params.year}-${params.month}-01`,
+          endDate: `${params.year}-${params.month}-${maxDayInMonth}`,
+          pageSize: 6,
+        })
+
+        // @ts-ignore
+        setNews(newsData.novinas.data)
+        setCurrentPage(1)
+        setPagesCount(newsData.novinas.meta.pagination.pageCount)
+      } catch (err) {
+        console.log(err, 'filter news page error')
+        window.location.replace('/404')
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchData()
+  }, [params])
 
   return (
     <div
@@ -87,13 +160,14 @@ export const News: React.FC<INewsProps> = ({
             styles={{ marginBottom: 40 }}
           />
         ) : null}
+
         <div
           className={cn(styles['news__items'], {
             [styles['news__items--loading']]: isLoading,
           })}
         >
-          {news.length
-            ? news.map((news) => (
+          {!isLoading
+            ? (news.length ? news : []).map((news) => (
                 <NewsItem
                   key={news.id}
                   id={news.id}

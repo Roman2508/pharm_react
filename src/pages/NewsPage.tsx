@@ -2,24 +2,26 @@ import React from 'react'
 
 import { gql } from '../graphql/client'
 import { News } from '../components/News/News'
+import { scrollToTop } from '../utils/scrollToTop'
 import Skeleton from '../components/Skeleton/Skeleton'
 import NewsArchive from '../components/News/NewsArchive'
-import { GetAllNewsDatesQuery, GetNewsQuery } from '../graphql/__generated__'
-import { scrollToTop } from '../utils/scrollToTop'
+import { GetAllNewsDatesQuery } from '../graphql/__generated__'
 
 export const NewsPage: React.FC = () => {
-  const [newsData, setNewsData] = React.useState<GetNewsQuery>()
   const [newsDates, setNewsDates] = React.useState<GetAllNewsDatesQuery>()
 
   React.useEffect(() => {
     scrollToTop()
 
     const fetchData = async () => {
-      const newsData = await gql.GetNews({ pageSize: 6 })
-      const newsDates = await gql.GetAllNewsDates()
+      try {
+        const newsDates = await gql.GetAllNewsDates()
 
-      setNewsDates(newsDates)
-      setNewsData(newsData)
+        setNewsDates(newsDates)
+      } catch (err) {
+        console.log(err, 'filter news page error')
+        window.location.replace('/404')
+      }
     }
 
     fetchData()
@@ -27,7 +29,7 @@ export const NewsPage: React.FC = () => {
 
   return (
     <div className="container">
-      {newsData ? (
+      {newsDates ? (
         <div className={`section-title`} style={{ marginBottom: '40px' }}>
           Всі новини
         </div>
@@ -43,7 +45,7 @@ export const NewsPage: React.FC = () => {
 
       <div className="page-row">
         <div className="col-news-9-12">
-          <News newsData={newsData} pageSize={6} />
+          <News pageSize={6} isFilter />
         </div>
         <div className="col-news-3-12">
           <NewsArchive newsDates={newsDates} />

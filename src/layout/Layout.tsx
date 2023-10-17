@@ -15,7 +15,6 @@ import Breadcrumbs from '../components/Breadcrumbs/Breadcrumbs'
 import LoadingSpinner from '../components/LoadingSpinner/LoadingSpinner'
 
 export const Layout: React.FC<{ isHomePage?: boolean }> = ({ isHomePage = false }) => {
-  // const [SEO, setSEO] = React.useState<SeoEntityResponse>()
   const [headerData, setHeaderData] = React.useState<HeaderEntityResponse>()
   const [footerData, setFooterData] = React.useState<FooterEntityResponse>()
   const [headerSchedule, setHeaderSchedule] = React.useState<GetHeaderScheduleQuery>()
@@ -40,7 +39,7 @@ export const Layout: React.FC<{ isHomePage?: boolean }> = ({ isHomePage = false 
         setHeaderSchedule(headerSchedule)
       } catch (err) {
         console.log(err, 'layout error')
-        // window.location.replace('/404')
+        window.location.replace('/404')
       }
     }
 

@@ -18,6 +18,11 @@ import { OneGroupSchedulePage } from './pages/Rozklad/OneGroupSchedule'
 import { AllTeachersSchedulePage } from './pages/Rozklad/AllTeachersSchedule'
 import { OneTeacherSchedulePage } from './pages/Rozklad/OneTeacherSchedule'
 import { Administration } from './pages/Pro-zhbphc/Administracia/Administracia'
+import { KontaktyPage } from './pages/Pro-zhbphc/Kontakty/KontaktyPage'
+import { VideoAnd3d } from './pages/Pro-zhbphc/VideoAnd3d/VideoAnd3d'
+import { VikladSkladPage } from './pages/Pro-zhbphc/VikladSklad/VikladSkladPage'
+import { NotFoundPage } from './pages/404'
+import { DefaultPage } from './pages/DefaultPages/DefaultPage'
 
 const App = () => {
   return (
@@ -27,8 +32,11 @@ const App = () => {
       </Route>
 
       <Route element={<Layout />}>
+        {/* NEWS  */}
         <Route element={<NewsPage />} path="/novina" />
+        <Route element={<NewsPage />} path="/novina/:year/:month" />
         <Route element={<FullNewsPage />} path="/novina/:year/:month/:day/:news_id" />
+        {/* // NEWS  */}
 
         {/* STRUCTURE */}
         <Route element={<SmksPage />} path="/structure/cmks" />
@@ -52,9 +60,26 @@ const App = () => {
         <Route element={<OneTeacherSchedulePage />} path="/rozklad/vikladach/:teacher_slug" />
         {/* // ROZKLAD */}
 
+        {/* PRO ZBFFK */}
+        <Route element={<KontaktyPage />} path="/pro-zhbphc/kontakty" />
         <Route element={<Administration />} path="/pro-zhbphc/administracia" />
+        <Route element={<VikladSkladPage />} path="/pro-zhbphc/viklad-sklad" />
+        <Route element={<VideoAnd3d />} path="/pro-zhbphc/video-and-3d" />
+        {/* // PRO ZBFFK */}
 
+        {/* GENERAL INFO */}
         <Route element={<GeneralInfo />} path="/general-info" />
+        {/* // GENERAL INFO */}
+
+        {/* 404 PAGE */}
+        <Route element={<NotFoundPage />} path="/404" />
+        {/* // 404 PAGE */}
+
+        {/* DEFAULT LAYOUT PAGE */}
+        <Route element={<DefaultPage />} path="/:first_lvl_url/" />
+        <Route element={<DefaultPage />} path="/:first_lvl_url/:second_lvl_url" />
+        <Route element={<DefaultPage />} path="/:first_lvl_url/:second_lvl_url/:third_lvl_url" />
+        {/* // DEFAULT LAYOUT PAGE */}
       </Route>
     </Routes>
   )
