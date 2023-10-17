@@ -13,6 +13,7 @@ import { scrollToTop } from '../utils/scrollToTop'
 export const HomePage: React.FC = () => {
   React.useEffect(() => {
     scrollToTop()
+    document.title = `Головна сторінка | ЖБФФК`
   }, [])
 
   return (

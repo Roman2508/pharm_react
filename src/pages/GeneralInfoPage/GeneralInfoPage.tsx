@@ -2,6 +2,8 @@ import styles from './GeteralInfoPage.module.scss'
 import tableStyles from '../../components/ui/Table/Table.module.scss'
 
 const GeneralInfo = () => {
+  document.title = `General info | Zhytomyr College of Pharmacy`
+
   return (
     <div className="container">
       <div className={`section-title`} style={{ marginBottom: '40px' }}>

@@ -17,6 +17,7 @@ export const Administration: React.FC = () => {
       try {
         const administration = await gql.GetAdministration()
         setAdministration(administration)
+        document.title = `Адміністрація | ЖБФФК`
       } catch (err) {
         console.log(err, 'administration page error')
         window.location.replace('/404')

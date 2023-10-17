@@ -29,6 +29,7 @@ export const FullSubdivPage = () => {
         })
         // @ts-ignore
         setDubdivData(subdivData.subdivisions.data[0])
+        document.title = `${subdivData.subdivisions.data[0].attributes.SEO.title} | ЖБФФК`
       } catch (err) {
         console.log(err, 'subdiv page error')
         window.location.replace('/404')

@@ -31,6 +31,8 @@ export const DefaultPage: React.FC = () => {
 
           // @ts-ignore
           setPageData(pageData.pages.data[0])
+          document.title = `${pageData.pages.data[0].attributes.SEO.title} | ЖБФФК`
+
           return
         }
         if (params && params.first_lvl_url && params.second_lvl_url) {
@@ -44,6 +46,7 @@ export const DefaultPage: React.FC = () => {
 
           // @ts-ignore
           setPageData(pageData.pages.data[0])
+          document.title = `${pageData.pages.data[0].attributes.SEO.title} | ЖБФФК`
           return
         }
         if (params && params.first_lvl_url) {
@@ -55,6 +58,7 @@ export const DefaultPage: React.FC = () => {
 
           // @ts-ignore
           setPageData(pageData.pages.data[0])
+          document.title = `${pageData.pages.data[0].attributes.SEO.title} | ЖБФФК`
           return
         }
       } catch (err) {

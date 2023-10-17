@@ -22,6 +22,7 @@ export const OneGroupSchedulePage: React.FC = () => {
         const groupData = await gql.GetGroupSchedule({ groupName: params.group_name })
         // @ts-ignore
         setGroupData(groupData.groups.data[0])
+        document.title = `${groupData.groups.data[0].attributes.name} | ЖБФФК`
       } catch (err) {
         console.log(err, 'all groups page error')
         window.location.replace('/404')

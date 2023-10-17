@@ -2,14 +2,13 @@ import React from 'react'
 
 import { gql } from '../../../graphql/client'
 import styles from './VideoAnd3d.module.scss'
+import { scrollToTop } from '../../../utils/scrollToTop'
 import { Videos } from '../../../components/Videos/Videos'
+import Skeleton from '../../../components/Skeleton/Skeleton'
 import FullScreenFrame from '../../../components/FullScreenFrame/FullScreenFrame'
 import { /* GetAllVideosQuery, */ GetPanoramsQuery } from '../../../graphql/__generated__'
-import { scrollToTop } from '../../../utils/scrollToTop'
-import Skeleton from '../../../components/Skeleton/Skeleton'
 
 export const VideoAnd3d: React.FC = () => {
-  // const [videos, setVideos] = React.useState<GetAllVideosQuery>()
   const [panoramas, setPanoramas] = React.useState<GetPanoramsQuery>()
 
   const [isOpenFullScreen, setOpenFullScreen] = React.useState(false)
@@ -20,11 +19,10 @@ export const VideoAnd3d: React.FC = () => {
 
     const fetchData = async () => {
       try {
-        // const videos = await gql.GetAllVideos()
         const panoramas = await gql.GetPanorams()
 
         setPanoramas(panoramas)
-        // setVideos(videos)
+        document.title = `Відео та 3D-панорами | ЖБФФК`
       } catch (err) {
         console.log(err, 'video and 3d page')
         window.location.replace('/404')
@@ -103,42 +101,3 @@ export const VideoAnd3d: React.FC = () => {
     </>
   )
 }
-
-// export const getStaticProps: GetStaticProps = async () => {
-//   try {
-//     const SEO = await gql.GetSEO()
-//     const headerData = await gql.GetHeader()
-//     const footerData = await gql.GetFooter()
-//     const mainScreenData = await gql.GetMainScreen()
-//     const headerSchedule = await gql.GetHeaderSchedule()
-
-//     const videos = await gql.GetAllVideos()
-//     const panoramas = await gql.GetPanorams()
-
-//     return {
-//       props: {
-//         SEO,
-//         videos,
-//         panoramas,
-//         headerData,
-//         footerData,
-//         headerSchedule,
-//         mainScreenData,
-//       },
-//       revalidate: 10,
-//     }
-//   } catch (error) {
-//     console.log(error, 'about page error')
-//     return {
-//       props: {
-//         SEO: {},
-//         videos: {},
-//         panoramas: {},
-//         headerData: {},
-//         footerData: {},
-//         mainScreenData: {},
-//         headerSchedule: {},
-//       },
-//     }
-//   }
-// }

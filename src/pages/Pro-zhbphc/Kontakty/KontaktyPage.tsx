@@ -47,6 +47,7 @@ export const KontaktyPage: React.FC = () => {
       try {
         const administration = await gql.GetAdministration()
         setAdministration(administration)
+        document.title = `Контакти | ЖБФФК`
       } catch (err) {
         console.log(err, 'kontakty page error')
         window.location.replace('/404')

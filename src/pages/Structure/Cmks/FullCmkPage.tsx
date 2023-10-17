@@ -26,6 +26,7 @@ export const FullSmksPage = () => {
         const cmkData = await gql.GetCycleCommission({ pageUrl: `/${params.cmks_slug}` })
         // @ts-ignore
         setCmkData(cmkData.cycleCommissions.data[0])
+        document.title = `${cmkData.cycleCommissions.data[0].attributes.SEO.title} | ЖБФФК`
       } catch (err) {
         console.log(err, 'cmk error')
         window.location.replace('/404')

@@ -26,6 +26,7 @@ export const FullVidilenyaPage: React.FC = () => {
         const vidilenyaData = await gql.GetVidilenya({ vidilenyaSlug: `${params.vidilenya_slug}` })
         // @ts-ignore
         setVidilenyaData(vidilenyaData.vidilenyas.data[0])
+        document.title = `${vidilenyaData.vidilenyas.data[0].attributes.SEO.title} | ЖБФФК`
       } catch (err) {
         console.log(err, 'vidilenya page error')
       } finally {

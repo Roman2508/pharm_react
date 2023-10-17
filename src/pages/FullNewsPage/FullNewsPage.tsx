@@ -44,6 +44,7 @@ const FullNewsPage: React.FC = () => {
         setNewsDates(newsDates)
         setResentNews(resentNews)
         setFullNews(fullNews.novinas.data[0])
+        document.title = `${fullNews.novinas.data[0].attributes.title} | ЖБФФК`
       } catch (error) {
         console.log(error, 'news page error')
         // redirect('/404')

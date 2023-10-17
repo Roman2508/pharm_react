@@ -13,6 +13,7 @@ export const AllTeachersSchedulePage: React.FC = () => {
 
     const fetchData = async () => {
       try {
+        document.title = `Викладачі | ЖБФФК`
         const cycleCommissions = await gql.GetAllCycleCommissionsTeachers()
         setCycleCommissions(cycleCommissions)
       } catch (err) {

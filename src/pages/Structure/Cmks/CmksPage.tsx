@@ -14,6 +14,7 @@ export const SmksPage = () => {
     scrollToTop()
     const fetchData = async () => {
       try {
+        document.title = `Циклові комісії | ЖБФФК`
         const cmkList = await gql.GetAllCycleCommissions()
         setCmkList(cmkList)
       } catch (err) {

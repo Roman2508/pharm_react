@@ -20,6 +20,7 @@ export const VikladSkladPage: React.FC = () => {
 
     const fetchData = async () => {
       try {
+        document.title = `Викладацький склад | ЖБФФК`
         const teachers = await gql.GetAllTeachersFullInfo()
         const cycleCommissions = await gql.GetAllCycleCommissions()
 

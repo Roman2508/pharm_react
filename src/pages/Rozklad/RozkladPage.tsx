@@ -11,6 +11,7 @@ export const RozkladPage: React.FC = () => {
   const [cycleCommissions, setCycleCommissions] = React.useState<GetAllCycleCommissionsTeachersQuery>()
 
   React.useEffect(() => {
+    document.title = `Розклад | ЖБФФК`
     const fetchData = async () => {
       try {
         scrollToTop()

@@ -12,7 +12,7 @@ export const NewsPage: React.FC = () => {
 
   React.useEffect(() => {
     scrollToTop()
-
+    document.title = `Новини | ЖБФФК`
     const fetchData = async () => {
       try {
         const newsDates = await gql.GetAllNewsDates()

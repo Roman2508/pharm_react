@@ -29,10 +29,11 @@ export const TeacherPage: React.FC = () => {
         teacherSlug: `${params.teacher_slug}`,
       })
       setTeacher(teacher)
+      document.title = `${teacher.workers.data[0].attributes.name} | ЖБФФК`
     }
 
     fetchData()
-  }, [])
+  }, [params])
 
   return (
     <div className="container">

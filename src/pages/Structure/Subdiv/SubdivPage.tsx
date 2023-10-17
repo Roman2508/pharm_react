@@ -15,6 +15,7 @@ const SubdivPage = () => {
 
     const fetchData = async () => {
       try {
+        document.title = `Підрозділи | ЖБФФК`
         const subdivList = await gql.GetAllSubdivision()
         setSubdivList(subdivList)
       } catch (err) {

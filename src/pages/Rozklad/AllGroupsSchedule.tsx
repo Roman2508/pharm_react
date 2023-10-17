@@ -12,6 +12,7 @@ export const AllGroupsPage: React.FC = () => {
 
     const fetchData = async () => {
       try {
+        document.title = `Групи | ЖБФФК`
         const groups = await gql.GetAllGroups()
         setGroups(groups)
       } catch (err) {

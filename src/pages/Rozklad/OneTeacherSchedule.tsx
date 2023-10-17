@@ -22,6 +22,7 @@ export const OneTeacherSchedulePage: React.FC = () => {
         const teacherData = await gql.GetTeacherSchedule({ teacherSlug: params.teacher_slug })
         // @ts-ignore
         setTeacherData(teacherData.workers.data[0])
+        document.title = `${teacherData.workers.data[0].attributes.name} | ЖБФФК`
       } catch (err) {
         console.log(err, 'all groups page error')
         window.location.replace('/404')

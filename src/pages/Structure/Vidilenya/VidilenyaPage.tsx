@@ -15,6 +15,7 @@ export const ViddilenyaPage: React.FC = () => {
 
     const fetchData = async () => {
       try {
+        document.title = `Відділення | ЖБФФК`
         const vidilenyaList = await gql.GetAllVidilenyas()
         // @ts-ignore
         setVidilenyaList(vidilenyaList.vidilenyas.data)
