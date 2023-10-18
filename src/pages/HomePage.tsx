@@ -22,7 +22,7 @@ export const HomePage: React.FC = () => {
       <About />
       <Stats />
       <div className="container">
-        <News showTitle addMarginBottom />
+        <News showTitle addMarginBottom  isHomePage/>
       </div>
       <Events />
       <Gallery />

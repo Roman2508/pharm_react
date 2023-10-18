@@ -16,10 +16,16 @@ interface INewsProps {
   pageSize?: number
   addMarginBottom?: boolean
   newsData?: GetNewsByMonthQuery
-  isFilter?: boolean
+  isHomePage?: boolean
 }
 
-export const News: React.FC<INewsProps> = ({ showTitle, newsData, pageSize = 3, addMarginBottom = false }) => {
+export const News: React.FC<INewsProps> = ({
+  showTitle,
+  newsData,
+  pageSize = 3,
+  addMarginBottom = false,
+  isHomePage = false,
+}) => {
   const params = useParams()
 
   // @ts-ignore
@@ -40,7 +46,7 @@ export const News: React.FC<INewsProps> = ({ showTitle, newsData, pageSize = 3, 
       try {
         setIsLoading(true)
         const newsData = await gql.GetNews({ pageSize })
-        
+
         setCurrentPage(1)
         // @ts-ignore
         setNews(newsData.novinas.data)
@@ -58,7 +64,9 @@ export const News: React.FC<INewsProps> = ({ showTitle, newsData, pageSize = 3, 
 
   /* PAGINATION */
   React.useEffect(() => {
-    scrollToTop()
+    if (!isHomePage) {
+      scrollToTop()
+    }
 
     if (!Object.keys(params).length) {
       const fetchNewsItems = async () => {
