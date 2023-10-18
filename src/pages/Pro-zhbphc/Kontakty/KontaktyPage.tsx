@@ -130,7 +130,7 @@ export const KontaktyPage: React.FC = () => {
                 : Array(6)
                     .fill(null)
                     .map((_, index) => (
-                      <div className={contactsStyles['contact__item']}>
+                      <div className={contactsStyles['contact__item']} key={index}>
                         <Skeleton
                           width="100"
                           height="20"

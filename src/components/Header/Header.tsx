@@ -2,10 +2,9 @@ import React from 'react'
 
 import { Link } from 'react-router-dom'
 import styles from './Header.module.scss'
-import { gql } from '../../graphql/client'
 import HeaderNavigation from './HeaderNavigation'
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner'
-import { GetHeaderQuery, GetHeaderScheduleQuery, HeaderEntityResponse } from '../../graphql/__generated__'
+import { GetHeaderScheduleQuery, HeaderEntityResponse } from '../../graphql/__generated__'
 
 interface IHeaderProps {
   headerData: HeaderEntityResponse
@@ -13,9 +12,6 @@ interface IHeaderProps {
 }
 
 const Header: React.FC<IHeaderProps> = ({ headerData, headerSchedule }) => {
-  //   const [headerData, setHeaderData] = React.useState<GetHeaderQuery>()
-  //   const [headerSchedule, setHeaderSchedule] = React.useState<GetHeaderScheduleQuery>()
-
   const [stickyClass, setStickyClass] = React.useState<'header--static' | 'header--sticky'>('header--static')
 
   const isSticky = () => {
@@ -23,23 +19,6 @@ const Header: React.FC<IHeaderProps> = ({ headerData, headerSchedule }) => {
     const stickyClass = scrollTop >= 82 ? 'header--sticky' : 'header--static'
     setStickyClass(stickyClass)
   }
-
-  //   React.useEffect(() => {
-  //     const fetchData = async () => {
-  //       try {
-  //         const headerSchedule = await gql.GetHeaderSchedule()
-  //         const headerData = await gql.GetHeader()
-
-  //         setHeaderData(headerData)
-  //         setHeaderSchedule(headerSchedule)
-  //       } catch (err) {
-  //         console.log(err, 'home layout error')
-  //         window.location.replace('/404')
-  //       }
-  //     }
-
-  //     fetchData()
-  //   }, [])
 
   React.useEffect(() => {
     window.addEventListener('scroll', isSticky)

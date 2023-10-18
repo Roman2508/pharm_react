@@ -90,7 +90,7 @@ const PageContnet = ({ colSize, pageComponents, mainPhotoCol, cmkHead, cmkTeache
 
   const handleChangeTeachersRange = (currentPage: number) => {
     setCurrentPage(currentPage)
-    setTeachersRange((prev) => {
+    setTeachersRange(() => {
       return [currentPage * teachersOnPage - teachersOnPage, currentPage * teachersOnPage]
     })
   }
@@ -242,7 +242,7 @@ const PageContnet = ({ colSize, pageComponents, mainPhotoCol, cmkHead, cmkTeache
         <div className={styles['cmk-teacher-pagination']}>
           {Array(pagesCount)
             .fill(null)
-            .map((el, index) => (
+            .map((_, index) => (
               <span
                 className={cn(styles['cmk-teacher-page'], {
                   [styles['active-page']]: currentPage === index + 1,

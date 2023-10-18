@@ -1,9 +1,8 @@
 import React from 'react'
 import styles from './Stats.module.scss'
 import { gql } from '../../graphql/client'
-import LoadingSpinner from '../LoadingSpinner/LoadingSpinner'
-import { GetHomePageStatQuery } from '../../graphql/__generated__'
 import Skeleton from '../Skeleton/Skeleton'
+import { GetHomePageStatQuery } from '../../graphql/__generated__'
 
 const Stats: React.FC = () => {
   const [data, setData] = React.useState<GetHomePageStatQuery>()

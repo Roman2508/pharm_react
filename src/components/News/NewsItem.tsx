@@ -14,7 +14,7 @@ interface INewsItemProps {
   photosForCollage: any
 }
 
-export const NewsItem: React.FC<INewsItemProps> = ({ id, title, mainPhoto, date, body, photosForCollage }) => {
+export const NewsItem: React.FC<INewsItemProps> = ({ id, title, mainPhoto, date, body }) => {
   const { day, month, year } = convertMonthName(date)
 
   const dateArray = date.split('-')

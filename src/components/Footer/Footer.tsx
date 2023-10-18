@@ -1,14 +1,12 @@
 import React from 'react'
 import cn from 'classnames'
 
-// import Form from '../Form/Form'
-// import Modal from '../Modal/Modal'
+import Form from '../Form/Form'
+import Modal from '../Modal/Modal'
 import { Link } from 'react-router-dom'
 import styles from './Footer.module.scss'
-import { FooterEntityResponse, GetFooterQuery } from '../../graphql/__generated__'
+import { FooterEntityResponse } from '../../graphql/__generated__'
 import { clearPhoneNumber } from '../../utils/clearPhoneNumber'
-import Modal from '../Modal/Modal'
-import Form from '../Form/Form'
 
 interface IFooterProps {
   footerData: FooterEntityResponse

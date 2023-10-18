@@ -1,12 +1,4 @@
-import { GetAllNewsDatesQuery } from '@/graphql/__generated__'
-
-interface IRequestedData {
-  data: {
-    novinas: {
-      data: { id: string; attributes: { date: string } }[]
-    }
-  }
-}
+import { GetAllNewsDatesQuery } from '../graphql/__generated__'
 
 interface IYearsAndMonths {
   year: string

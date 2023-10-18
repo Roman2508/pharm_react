@@ -4,7 +4,6 @@ import cn from 'classnames'
 import Modal from '../Modal/Modal'
 import { gql } from '../../graphql/client'
 import styles from './Announcement.module.scss'
-import LoadingSpinner from '../LoadingSpinner/LoadingSpinner'
 import { GetAdvertisementsQuery } from '../../graphql/__generated__'
 import AnnouncementLoader from './AnnouncementLoader'
 
