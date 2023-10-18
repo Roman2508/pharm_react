@@ -3,6 +3,7 @@ import cn from 'classnames'
 
 import styles from './Select.module.scss'
 import { RefCallBack } from 'react-hook-form'
+import selectArrow from '../../../assets/icons/select-arrow.svg'
 
 interface ISelectProps {
   children: string | JSX.Element | JSX.Element[]
@@ -44,7 +45,7 @@ const Select: React.FC<ISelectProps> = ({ children, activeItem, error, label, in
       >
         <span className={styles['select__current']}>{activeItem || label}</span>
         <div className={styles['select__icon']}>
-          <img src="../src/assets/icons/select-arrow.svg" width={20} height={20} alt="arrow icon" />
+          <img src={selectArrow} width={20} height={20} alt="arrow icon" />
         </div>
       </div>
 
