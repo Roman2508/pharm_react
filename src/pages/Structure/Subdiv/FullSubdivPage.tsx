@@ -3,12 +3,11 @@ import cn from 'classnames'
 import { useParams } from 'react-router-dom'
 
 import styles from '../Structure.module.scss'
+import { scrollToTop } from '../../../utils/scrollToTop'
+import Skeleton from '../../../components/Skeleton/Skeleton'
 import { SubdivisionEntity, gql } from '../../../graphql/client'
 import PageContnet from '../../../components/PageContent/PageContnet'
-import LoadingSpinner from '../../../components/LoadingSpinner/LoadingSpinner'
-import { scrollToTop } from '../../../utils/scrollToTop'
 import StructureItemSkeleton from '../../../components/Skeleton/StructureItemSkeleton'
-import Skeleton from '../../../components/Skeleton/Skeleton'
 
 export const FullSubdivPage = () => {
   const params = useParams()

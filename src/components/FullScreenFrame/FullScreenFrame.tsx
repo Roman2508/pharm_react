@@ -1,7 +1,7 @@
-import React from "react"
-import cn from "classnames"
+import React from 'react'
+import cn from 'classnames'
 
-import styles from "./FullScreenFrame.module.scss"
+import styles from './FullScreenFrame.module.scss'
 
 interface IFullScreenFrameProps {
   isOpenFullScreen: boolean
@@ -9,14 +9,25 @@ interface IFullScreenFrameProps {
   setOpenFullScreen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const FullScreenFrame: React.FC<
-  React.PropsWithChildren<IFullScreenFrameProps>
-> = ({ children, isOpenFullScreen, setOpenFullScreen }) => {
+const FullScreenFrame: React.FC<React.PropsWithChildren<IFullScreenFrameProps>> = ({
+  children,
+  isOpenFullScreen,
+  setOpenFullScreen,
+}) => {
   const pauseVideo = () => {
-    var iframe = document.querySelector("iframe")
+    let iframe = document.querySelector('iframe')
     if (iframe) {
-      var iframeSrc = iframe.src
+      let iframeSrc = iframe.src
       iframe.src = iframeSrc
+
+      // if (!iframe.contentWindow) {
+      // return
+      // }
+      // iframe.contentWindow?.postMessage(JSON.stringify({ event: 'command', func: 'stopVideo' }), '*')
+      // iframe.contentWindow?.postMessage('{"event":"command","func":"' + 'pauseVideo' + '","args":""}', '*')
+      // var iframe1 = document.querySelector('iframe')
+      // if (!iframe1) return
+      // iframe1.contentWindow?.postMessage('{"event":"command","func":"' + 'pauseVideo' + '","args":""}', '*')
     }
   }
 
@@ -27,21 +38,21 @@ const FullScreenFrame: React.FC<
 
   return (
     <div
-      className={cn(styles["full-screen-frame"], {
-        [styles["full-screen-frame__layout-close"]]: !isOpenFullScreen,
+      className={cn(styles['full-screen-frame'], {
+        [styles['full-screen-frame__layout-close']]: !isOpenFullScreen,
       })}
     >
-      <div className={styles["full-screen-frame__inner"]}>
+      <div className={styles['full-screen-frame__inner']}>
         <div
-          className={cn(styles["full-screen-frame__content"], {
-            [styles["full-screen-frame--open"]]: isOpenFullScreen,
-            [styles["full-screen-frame--close"]]: !isOpenFullScreen,
+          className={cn(styles['full-screen-frame__content'], {
+            [styles['full-screen-frame--open']]: isOpenFullScreen,
+            [styles['full-screen-frame--close']]: !isOpenFullScreen,
           })}
         >
           {children}
 
           <svg
-            className={styles["full-screen-frame__close-icon"]}
+            className={styles['full-screen-frame__close-icon']}
             onClick={handleClose}
             width="30px"
             height="30px"

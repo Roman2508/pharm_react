@@ -3,11 +3,10 @@ import cn from 'classnames'
 import { useParams, Link } from 'react-router-dom'
 
 import styles from './Teacher.module.scss'
+import Skeleton from '../../../components/Skeleton/Skeleton'
 import { gql, GetOneTeacherQuery } from '../../../graphql/client'
 import pageStyles from '../../../components/PageContent/Page.module.scss'
-import LoadingSpinner from '../../../components/LoadingSpinner/LoadingSpinner'
 import { FancyboxGallery } from '../../../components/FancyboxGallery/FancyboxGallery'
-import Skeleton from '../../../components/Skeleton/Skeleton'
 
 const tabs = [
   { id: 1, text: 'Загальна інформація' },

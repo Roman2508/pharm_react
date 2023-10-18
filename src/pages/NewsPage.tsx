@@ -45,7 +45,7 @@ export const NewsPage: React.FC = () => {
 
       <div className="page-row">
         <div className="col-news-9-12">
-          <News pageSize={6} isFilter />
+          <News pageSize={6} />
         </div>
         <div className="col-news-3-12">
           <NewsArchive newsDates={newsDates} />

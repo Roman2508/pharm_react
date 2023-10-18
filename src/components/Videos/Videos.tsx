@@ -16,6 +16,8 @@ interface IVideoProps {
 }
 
 export const Videos: React.FC<IVideoProps> = ({ test }) => {
+  const iframeVideoRef = React.useRef<HTMLIFrameElement>(null)
+
   const { activeSlide, loaded, sliderRef, instanceRef } = useSlider()
   const { sliderRef: preloadSliderRef } = useSlider()
 
@@ -53,6 +55,7 @@ export const Videos: React.FC<IVideoProps> = ({ test }) => {
           width="60%"
           height="70%"
           allow="fullscreen"
+          ref={iframeVideoRef}
           src={`${videoUrl}?controls=2`}
           allowFullScreen
           frameBorder="0"
@@ -92,7 +95,6 @@ export const Videos: React.FC<IVideoProps> = ({ test }) => {
                     width={80}
                     height={80}
                     src={playIcon}
-                    // src={!test ? './assets/icons/video-play.svg' : '../assets/icons/video-play.svg'}
                     onClick={() => handleOpenVideo(video.attributes.video_url)}
                     alt="video-play"
                   />
