@@ -11,7 +11,7 @@ interface INewMonths {
   count: number
 }
 
-const groupNewsByYearsAndMonths = (data: GetAllNewsDatesQuery) => {
+const groupNewsByYearsAndMonths = (data?: GetAllNewsDatesQuery) => {
   if (!data) {
     return
   }

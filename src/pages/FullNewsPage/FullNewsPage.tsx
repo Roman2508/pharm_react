@@ -159,17 +159,6 @@ const FullNewsPage: React.FC = () => {
                 <div className={styles['news-body']} dangerouslySetInnerHTML={{ __html: newsBody }} />
               </div>
 
-              {fullNews.attributes.video_url && (
-                <iframe
-                  id="ytplayer"
-                  width="100%"
-                  height="400"
-                  allow="fullscreen"
-                  src={`${videoUrl}?autoplay=1&controls=2`}
-                  frameBorder="0"
-                />
-              )}
-
               {fullNews.attributes.collage_photos.data.length ? (
                 <FancyboxGallery className={`page-gallery ${styles['full-news-gallery']}`}>
                   {fullNews.attributes.collage_photos.data.map((el: any) => (
@@ -191,6 +180,17 @@ const FullNewsPage: React.FC = () => {
                 </FancyboxGallery>
               ) : (
                 <></>
+              )}
+
+              {fullNews.attributes.video_url && (
+                <iframe
+                  id="ytplayer"
+                  width="100%"
+                  height="400"
+                  allow="fullscreen"
+                  src={`${videoUrl}?autoplay=0&controls=2`}
+                  frameBorder="0"
+                />
               )}
             </div>
           </div>
