@@ -11,7 +11,12 @@ interface INewMonths {
   count: number
 }
 
-const groupNewsByYearsAndMonths = (data?: GetAllNewsDatesQuery) => {
+interface IResponce {
+  months: INewMonths[]
+  year: string
+}
+
+const groupNewsByYearsAndMonths = (data?: GetAllNewsDatesQuery): IResponce[] | undefined => {
   if (!data) {
     return
   }
@@ -87,7 +92,17 @@ const groupNewsByYearsAndMonths = (data?: GetAllNewsDatesQuery) => {
     return { ...r, months: sortedMonth }
   })
 
-  return res2
+  const sortedYearsCopy = JSON.parse(JSON.stringify(res2))
+
+  const sortedYears = sortedYearsCopy.sort((a: IResponce, b: IResponce) => {
+    if (Number(a.year) > Number(b.year)) {
+      return -1
+    } else {
+      return 0
+    }
+  })
+
+  return sortedYears
 }
 
 export default groupNewsByYearsAndMonths
