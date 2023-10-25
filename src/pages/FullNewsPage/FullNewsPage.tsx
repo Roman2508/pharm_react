@@ -198,7 +198,7 @@ const FullNewsPage: React.FC = () => {
           <div className={styles['col-3-12']}>
             <div className={styles['resent-news']}>
               <h2 className="title-md" style={{ textAlign: 'center' }}>
-                Попередні новини
+                Останні новини
               </h2>
               <div className="resent-news__items">
                 {/* <!-- resent-news --> */}

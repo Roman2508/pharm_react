@@ -9,6 +9,7 @@ import { GetAllNewsDatesQuery } from '../graphql/__generated__'
 
 export const NewsPage: React.FC = () => {
   const [newsDates, setNewsDates] = React.useState<GetAllNewsDatesQuery>()
+  const [titleNewsFor, setTitleNewsFor] = React.useState('')
 
   React.useEffect(() => {
     scrollToTop()
@@ -31,7 +32,7 @@ export const NewsPage: React.FC = () => {
     <div className="container">
       {newsDates ? (
         <div className={`section-title`} style={{ marginBottom: '40px' }}>
-          Всі новини
+          {titleNewsFor ? titleNewsFor : 'Всі новини'}
         </div>
       ) : (
         <Skeleton
@@ -45,7 +46,7 @@ export const NewsPage: React.FC = () => {
 
       <div className="page-row">
         <div className="col-news-9-12">
-          <News pageSize={6} />
+          <News pageSize={6} setTitleNewsFor={setTitleNewsFor} />
         </div>
         <div className="col-news-3-12">
           <NewsArchive newsDates={newsDates} />

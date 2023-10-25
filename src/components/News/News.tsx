@@ -10,6 +10,7 @@ import { GetNewsByMonthQuery, NovinaEntity } from '../../graphql/__generated__'
 import { scrollToTop } from '../../utils/scrollToTop'
 import { useParams } from 'react-router-dom'
 import determineMaxDaysInMonth from '../../utils/determineMaxDaysInMonth'
+import { getMonthAndYearForNews } from '../../utils/getMonthAndYearForNews'
 
 interface INewsProps {
   showTitle?: boolean
@@ -17,12 +18,14 @@ interface INewsProps {
   addMarginBottom?: boolean
   newsData?: GetNewsByMonthQuery
   isHomePage?: boolean
+  setTitleNewsFor?: React.Dispatch<React.SetStateAction<string>>
 }
 
 export const News: React.FC<INewsProps> = ({
   showTitle,
   newsData,
   pageSize = 3,
+  setTitleNewsFor,
   addMarginBottom = false,
   isHomePage = false,
 }) => {
@@ -44,6 +47,7 @@ export const News: React.FC<INewsProps> = ({
 
     const fetchData = async () => {
       try {
+        if (setTitleNewsFor) setTitleNewsFor('')
         setIsLoading(true)
         const newsData = await gql.GetNews({ pageSize })
 
@@ -127,6 +131,7 @@ export const News: React.FC<INewsProps> = ({
         setIsLoading(true)
 
         const month = typeof params.month === 'string' ? params.month : ''
+        const year = typeof params.year === 'string' ? params.year : ''
         const maxDayInMonth = determineMaxDaysInMonth(month)
 
         const newsData = await gql.GetNewsByMonth({
@@ -135,6 +140,7 @@ export const News: React.FC<INewsProps> = ({
           pageSize: 6,
         })
 
+        if (setTitleNewsFor) setTitleNewsFor(getMonthAndYearForNews(month, year))
         // @ts-ignore
         setNews(newsData.novinas.data)
         setCurrentPage(1)
