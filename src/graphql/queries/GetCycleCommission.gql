@@ -81,7 +81,7 @@ query GetCycleCommission($pageUrl: String) {
           ...GetTwoColumnWithImageComponent
           ...GetBlocksPersonComponent
         }
-        workers(pagination: { pageSize: 100 }) {
+        workers(pagination: { pageSize: 100 }, filters: { email: { notNull: true } }) {
           data {
             attributes {
               name

@@ -117,6 +117,10 @@
   -webkit-box-orient: vertical;
 }
 
+.news__item-text {
+  max-height: 83px;
+}
+
 .news__item-title,
 .news__item-title span {
   font-family: 'GilroyBold', sans-serif;

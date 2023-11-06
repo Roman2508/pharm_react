@@ -38,7 +38,10 @@ const PageContnet = ({ colSize, pageComponents, mainPhotoCol, cmkHead, cmkTeache
     : ''
   const cmkHeadLink = cmkHead ? `/structure/cmks/${cmkSlug}/${cmkHead.slug}` : '/'
   const teachersOnPage = 4
-  const pagesCount = cmkTeachers ? Math.ceil(cmkTeachers.length / teachersOnPage) : 1
+  const pagesCount = cmkTeachers ? Math.ceil((cmkTeachers.length - 1) / teachersOnPage) : 1
+
+  console.log(cmkTeachers ? Math.ceil(cmkTeachers.length / teachersOnPage) : 1)
+  console.log(cmkTeachers, cmkTeachers?.length, teachersOnPage)
 
   const [teachersRange, setTeachersRange] = React.useState([0, teachersOnPage])
   const [currentPage, setCurrentPage] = React.useState(1)

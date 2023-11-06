@@ -3,6 +3,7 @@ query GetAllTeachersFullInfo($cmkName: String = "") {
     filters: {
       category: { in: ["teacher"] }
       cycle_commission: { name: { contains: $cmkName } }
+      email: { notNull: true }
     }
     sort: "name:asc"
     pagination: { pageSize: 200 }

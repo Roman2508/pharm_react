@@ -8,6 +8,7 @@ query GetAllTeachers {
     }
   }
 }
+
 query GetAllTeachersWithCycleCommission {
   workers(filters: { category: { in: ["teacher"] } }, sort: "name:asc", pagination: { pageSize: 500 }) {
     data {
