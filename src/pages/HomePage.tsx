@@ -9,6 +9,7 @@ import { Videos } from '../components/Videos/Videos'
 import { Contacts } from '../components/Contacts/Contacts'
 import { Partners } from '../components/Partners/Partners'
 import { scrollToTop } from '../utils/scrollToTop'
+// import LoadingSpinner from '../components/LoadingSpinner/LoadingSpinner'
 
 export const HomePage: React.FC = () => {
   React.useEffect(() => {
@@ -16,13 +17,15 @@ export const HomePage: React.FC = () => {
     document.title = `Головна сторінка | ЖБФФК`
   }, [])
 
+  // return <LoadingSpinner />
+
   return (
     <>
       <Announcement />
       <About />
       <Stats />
       <div className="container">
-        <News showTitle addMarginBottom  isHomePage/>
+        <News showTitle addMarginBottom isHomePage />
       </div>
       <Events />
       <Gallery />

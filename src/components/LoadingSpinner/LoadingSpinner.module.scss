@@ -21,3 +21,36 @@
     transform: rotate(360deg);
   }
 }
+
+.letters {
+  display: flex;
+  margin: 100px;
+  padding: 20px;
+  font-size: 70px;
+  position: relative;
+  color: var(--primary-color);
+
+  div {
+    font-family: GilroyBold, sans-serif;
+    position: absolute;
+    top: 0;
+    opacity: 1;
+    padding: 10px;
+    transform-origin: bottom center;
+    animation: animate 2s reverse infinite;
+  }
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(0deg) translateY(0px);
+    opacity: 1;
+    filter: blur(1px);
+  }
+
+  100% {
+    transform: rotate(45deg) translateY(-200px);
+    opacity: 0;
+    filter: blur(15px);
+  }
+}
